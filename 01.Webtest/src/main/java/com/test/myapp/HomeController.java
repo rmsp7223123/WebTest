@@ -19,4 +19,10 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping({ "/home" })
+	public String home() {
+		return "main";
+	}
+
+	
 }

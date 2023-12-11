@@ -18,7 +18,7 @@
 					<div class="text-center">
 						<h1 class="h4 text-gray-900 mb-4">로그인</h1>
 					</div>
-					<form class="user" action="loginCheck" method="post">
+					<form class="user" action="login" method="post" id="loginForm">
 						<div class="form-group">
 							<input type="text" class="form-control form-control-user" autocomplete="off"
 								id="member_id" aria-describedby="emailHelp" name="member_id"
@@ -28,8 +28,7 @@
 							<input type="password" class="form-control form-control-user" autocomplete="off"
 								name="member_pw" id="member_pw" placeholder="비밀번호를 입력해주세요.">
 						</div>
-						<button id="btn-login" type="button"
-							class="btn btn-user btn-block form-control" style="background : #F7DE6D;">
+						   <button type="submit" class="btn btn-user btn-block form-control" style="background : #F7DE6D;">
 							Login</button>
 					</form>
 				</div>
@@ -40,24 +39,25 @@
 	<script>
 	$('#member_pw').on('keypress', function(e){ 
 	    if(e.keyCode == '13'){ 
-	        $('#btn-login').click(); 
+	        $('#loginForm').submit(); 
 	    }
 	}); 
 	
- 	$('#btn-login').on('click',  function() {
-		$.ajax({
-			url : "loginCheck", 
-			data : {member_id:$("#member_id").val(), member_pw:$("#member_pw").val()},
-			type : 'post',
-		}).done(function(admin){
-			if(admin == 1) {
-				location = "main";
-			} else {
-				alert('없는 계정입니다.')
-			}
-		})
-		
-	})
+ 	$('#loginForm').submit(function(event) {
+ 		 event.preventDefault(); // 폼의 기본 동작(페이지 리로딩) 막기
+ 	    
+ 	    $.ajax({
+ 	        url: "login",
+ 	        data: { member_id: $("#member_id").val(), member_pw: $("#member_pw").val() },
+ 	        type: 'post',
+ 	    }).done(function (result) {
+ 	        if (result === 1) {
+ 	            location = "main";
+ 	        } else {
+ 	            alert('없는 계정이거나 비밀번호가 일치하지 않습니다.');
+ 	        }
+ 	    });
+	});
 
 	</script>
 
