@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="login">
-    <select id="loginCheck" parameterType="Map" resultType="Integer">
-        SELECT COUNT(*) FROM members
-        WHERE user_id = #{member_id} AND user_password = #{member_pw}
-    </select>
+	<select id="loginCheck" resultType="Integer">
+		SELECT COUNT(*) FROM members
+		WHERE user_id = #{user_id, jdbcType=VARCHAR} AND user_password =
+		#{user_password, jdbcType=VARCHAR}
+	</select>
 </mapper>

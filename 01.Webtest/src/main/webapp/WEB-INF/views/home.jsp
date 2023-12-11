@@ -6,6 +6,11 @@
 <head>
 <meta charset="UTF-8">
 <title>로그인</title>
+
+<link rel="icon" href="<c:url value = 'images/logo.png'/>"
+	type="image/x-icon">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
@@ -21,12 +26,12 @@
 					<form class="user" action="login" method="post" id="loginForm">
 						<div class="form-group">
 							<input type="text" class="form-control form-control-user" autocomplete="off"
-								id="member_id" aria-describedby="emailHelp" name="member_id"
+								id="user_id" aria-describedby="emailHelp" name="user_id"
 								placeholder="아이디를 입력해주세요.">
 						</div>
 						<div class="form-group">
 							<input type="password" class="form-control form-control-user" autocomplete="off"
-								name="member_pw" id="member_pw" placeholder="비밀번호를 입력해주세요.">
+								name="user_password" id="user_password" placeholder="비밀번호를 입력해주세요.">
 						</div>
 						   <button type="submit" class="btn btn-user btn-block form-control" style="background : #F7DE6D;">
 							Login</button>
@@ -48,13 +53,14 @@
  	    
  	    $.ajax({
  	        url: "login",
- 	        data: { member_id: $("#member_id").val(), member_pw: $("#member_pw").val() },
+ 	        data: { user_id: $("#user_id").val(), user_password: $("#user_password").val() },
  	        type: 'post',
  	    }).done(function (result) {
+ 	    	alert(result);
  	        if (result === 1) {
  	            location = "main";
  	        } else {
- 	            alert('없는 계정이거나 비밀번호가 일치하지 않습니다.');
+ 	            alert('없는 계정이거나 비밀번호가 틀렸습니다.')
  	        }
  	    });
 	});
