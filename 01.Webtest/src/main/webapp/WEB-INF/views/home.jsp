@@ -51,9 +51,9 @@
 			type : 'post',
 		}).done(function(admin){
 			if(admin == 1) {
-				location = "home";
+				location = "main";
 			} else {
-				alert('없는 계정이거나 관리자가 아닙니다.')
+				alert('없는 계정입니다.')
 			}
 		})
 		
