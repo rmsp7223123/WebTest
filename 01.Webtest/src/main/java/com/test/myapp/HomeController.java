@@ -2,6 +2,8 @@ package com.test.myapp;
 
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,8 +34,11 @@ public class HomeController {
 	
 	@RequestMapping("/login")
 	@ResponseBody
-	public String loginCheck(MemberVO vo) {
+	public String loginCheck(MemberVO vo, HttpSession session) {
 	    int login = sql.selectOne("login.loginCheck", vo);
+	    if(login == 1) {
+	    	session.setAttribute("loggedInUser", vo.getUser_id());
+	    }
 	    return String.valueOf(login);
 	}
 

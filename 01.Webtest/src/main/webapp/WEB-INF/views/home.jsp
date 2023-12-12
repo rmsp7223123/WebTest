@@ -13,7 +13,8 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 <body style="background: #FFF">
 	<div class="container">
@@ -25,17 +26,18 @@
 					</div>
 					<form class="user" action="login" method="post">
 						<div class="form-group">
-							<input type="text" class="form-control form-control-user" autocomplete="off"
-								id="user_id" aria-describedby="emailHelp" name="user_id"
-								placeholder="아이디를 입력해주세요.">
+							<input type="text" class="form-control form-control-user"
+								autocomplete="off" id="user_id" aria-describedby="emailHelp"
+								name="user_id" placeholder="아이디를 입력해주세요.">
 						</div>
 						<div class="form-group">
-							<input type="password" class="form-control form-control-user" autocomplete="off"
-								name="user_password" id="user_password" placeholder="비밀번호를 입력해주세요.">
+							<input type="password" class="form-control form-control-user"
+								autocomplete="off" name="user_password" id="user_password"
+								placeholder="비밀번호를 입력해주세요.">
 						</div>
 						<button id="btn-login" type="button"
-							class="btn btn-user btn-block form-control" style="background : #F7DE6D;">
-							Login</button>
+							class="btn btn-user btn-block form-control"
+							style="background: #F7DE6D;">Login</button>
 					</form>
 				</div>
 			</div>
@@ -43,27 +45,29 @@
 	</div>
 	<script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 	<script>
-	$('#user_password').on('keypress', function(e){ 
-	    if(e.keyCode == '13'){ 
-	        $('#btn-login').click(); 
-	    }
-	}); 
-	
- 	$('#btn-login').on('click',  function() {
-		$.ajax({
-			url : "login", 
-			data : {user_id:$("#user_id").val(), user_password:$("#user_password").val()},
-			type : 'post',
-		}).done(function(login){
-			if(login == '1') {
-				location = "home";
-			} else {
-				alert('test')
+		$('#user_password').on('keypress', function(e) {
+			if (e.keyCode == '13') {
+				$('#btn-login').click();
 			}
-		})
-		
-	})
+		});
 
+		$('#btn-login').on('click', function() {
+			$.ajax({
+				url : "login",
+				data : {
+					user_id : $("#user_id").val(),
+					user_password : $("#user_password").val()
+				},
+				type : 'post',
+			}).done(function(login) {
+				if (login == "1") {
+					location = "home";
+				} else {
+					alert('없는계정이거나 비밀번호가 틀렸습니다.')
+				}
+			})
+
+		})
 	</script>
 
 </body>
