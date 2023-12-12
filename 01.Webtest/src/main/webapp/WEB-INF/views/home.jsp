@@ -55,6 +55,8 @@
 			data : {user_id:$("#user_id").val(), user_password:$("#user_password").val()},
 			type : 'post',
 		}).done(function(login){
+			console.log("Ajax 데이터 전송 확인:", $("#user_id").val(), $("#user_password").val());
+		    console.log("서버 응답 확인:", login);
 			if(login == 1) {
 				location = "rxo/home";
 			} else {

@@ -31,7 +31,9 @@ public class HomeController {
 	
 	@RequestMapping("/login")
 	public int loginCheck(MemberVO vo) {
+		System.out.println("Received request with vo: " + vo);
 	    int login = sql.selectOne("login.loginCheck", vo);
+	    System.out.println("SQL executed. Result: " + login);
 	    return login;
 	}
 
