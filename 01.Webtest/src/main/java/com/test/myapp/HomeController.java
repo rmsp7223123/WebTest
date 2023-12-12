@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import rxo.member.MemberVO;
 
@@ -30,11 +31,10 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/login")
-	public int loginCheck(MemberVO vo) {
-		System.out.println("Received request with vo: " + vo);
+	@ResponseBody
+	public String loginCheck(MemberVO vo) {
 	    int login = sql.selectOne("login.loginCheck", vo);
-	    System.out.println("SQL executed. Result: " + login);
-	    return login;
+	    return String.valueOf(login);
 	}
 
 	
