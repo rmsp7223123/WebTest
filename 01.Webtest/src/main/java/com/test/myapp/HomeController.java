@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import rxo.member.MemberVO;
 
@@ -31,16 +30,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/login")
-	@ResponseBody
-	public String loginCheck(MemberVO vo) {
-	    String returnUrl = "";
+	public int loginCheck(MemberVO vo) {
 	    int login = sql.selectOne("login.loginCheck", vo);
-	    if (login == 1) {
-	        returnUrl = "redirect:/main"; // 로그인 성공 시
-	    } else {
-	        returnUrl = "redirect:/"; // 로그인 실패 시
-	    }
-	    return returnUrl;
+	    return login;
 	}
 
 	
