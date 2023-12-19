@@ -50,7 +50,7 @@ table {
 <body>
 	<h3 class="my-4" style="text-align: center;">글 목록</h3>
 
-	<form method="post" action="list">
+	<form method="post" action="home">
 		<div class="row justify-content-between mb-3">
 			<div class="col-auto">
 				<div class="input-group">
@@ -188,10 +188,18 @@ table 태그의 css에서 table-layout: fiexd 로 지정 +  td 에  text-truncat
 	<script src="<c:url value='/js/scripts.js'/>"></script>
 	<script>
 // 새 글 작성으로 이동
-document.getElementById('btn_write').addEventListener('click', function() {
-    window.location.href = '/rxo/new.jsp';
+$('#btn_write').on('click', function() {
+    $.ajax({
+        url: "new",
+        type: 'post',
+        success: function(response) {
+            window.location.href = '/rxo/new';
+        },
+        error: function(error) {
+            console.error('Error during AJAX request:', error);
+        }
+    });
 });
-
 	
 //상세정보화면 요청
 function info( id ){
