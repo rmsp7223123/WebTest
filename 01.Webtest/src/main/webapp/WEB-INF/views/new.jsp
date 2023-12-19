@@ -37,8 +37,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3 class="my-4"  style="text-align: center;">글작성</h3>
-	<form method="post" enctype="multipart/form-data" action="register">
+	<h3 class="my-4" style="text-align: center;">글작성</h3>
+	<form method="post" enctype="multipart/form-data" action="insert">
 		<table class="tb-row">
 			<colgroup>
 				<col width="180px">
@@ -46,12 +46,12 @@
 			</colgroup>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="title"
+				<td><input type="text" name="board_title"
 					class="check-empty form-control" title="제목"></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea name="content" class="check-empty form-control"
+				<td><textarea name="board_content" class="check-empty form-control"
 						title="내용"></textarea></td>
 			</tr>
 			<tr>
@@ -69,7 +69,7 @@
 				</td>
 			</tr>
 		</table>
-		<input type="hidden" name="writer" value="${loginInfo.userid}">
+		<input type="hidden" name="board_writer" value="${loginInfo.userid}">
 	</form>
 
 	<div class="btn-toolbar gap-2 my-3 justify-content-center">
@@ -82,14 +82,8 @@
 	<!-- Core theme JS-->
 	<script src="<c:url value='/js/scripts.js'/>"></script>
 	<script>
-		<script>
-		var fileList = new FileList();
-
 		$('#btn-save').click(function() {
-			if (emptyCheck()) {
-				multipleFileUpload();
-				$('form').submit()
-			}
+			$('form').submit()
 		})
 	</script>
 </body>

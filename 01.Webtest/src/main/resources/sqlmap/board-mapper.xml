@@ -4,9 +4,9 @@
 	<insert id="write" parameterType="rxo.board.BoardVO">
 		INSERT INTO board (board_title,
 		board_content, board_visible, board_writer)
-		VALUES (#{boardTitle},
-		#{boardContent}, #{boardVisible},
-		#{boardWriter})
+		VALUES (#{board_Title, jdbcType=VARCHAR},
+		#{board_Content, jdbcType=VARCHAR}, #{board_Visible, jdbcType=VARCHAR},
+		#{board_Writer, jdbcType=VARCHAR})
 	</insert>
 
 	<select id="getBoardById" parameterType="int"
@@ -19,8 +19,9 @@
 	</select>
 
 	<insert id="attachFile" parameterType="rxo.board.AttachmentVO">
-		INSERT INTO attachments (board_id, file_path)
-		VALUES (#{boardId}, #{filePath})
+		INSERT INTO attachments
+		(board_id, file_path)
+		VALUES (#{board_Id, jdbcType=VARCHAR}, #{file_Path, jdbcType=VARCHAR})
 	</insert>
 
 	<select id="getAttachmentsByBoardId" parameterType="int"

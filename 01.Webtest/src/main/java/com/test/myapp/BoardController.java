@@ -23,7 +23,7 @@ public class BoardController {
 	@RequestMapping("insert")
 	public String insertBoard(BoardVO vo, AttachmentVO vo2) {
 		sql.insert("board.write", vo);
-		if (vo2 != null && vo2.get != null && !vo2.getFilePath().isEmpty()) {
+		if (vo2 != null && vo2.getFile_Path() != null && !vo2.getFile_Path().isEmpty()) {
 	        sql.insert("board.attachFile", vo2);
 	    }
 		return "new";
