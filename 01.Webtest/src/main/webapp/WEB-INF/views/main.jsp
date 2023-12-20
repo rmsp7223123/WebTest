@@ -21,27 +21,19 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
 <script src="<c:url value='/js/common.js?${now }'/>"></script>
 <title>Insert title here</title>
-
 <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
-
-<!-- Custom styles for this template -->
 <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-<!-- Custom styles for this page -->
 <link href="vendor/datatables/dataTables.bootstrap4.min.css"
 	rel="stylesheet">
-
-
 <style>
 .input-group .form-select {
 	flex: initial;
 	width: 130px
 }
-
 table {
 	table-layout: fixed;
 }
@@ -49,7 +41,6 @@ table {
 </head>
 <body>
 	<h3 class="my-4" style="text-align: center;">글 목록</h3>
-
 	<form method="post" action="home">
 		<div class="row justify-content-between mb-3">
 			<div class="col-auto">
@@ -70,7 +61,6 @@ table {
 
 			<div class="col-auto">
 				<div class="row justify-content-between d-flex">
-					<!-- 한 페이지에 보여질 목록갯수 선택 -->
 					<div class="col-auto ps-0">
 						<select class="form-select" name="pageList">
 							<c:forEach var="i" begin="1" end="5">
@@ -78,14 +68,9 @@ table {
 							</c:forEach>
 						</select>
 					</div>
-					<!-- 글 작성 -->
 					<div class="col-auto ps-0">
-
 						<button class="btn btn-primary px-3" id="btn_write">글 작성</button>
 					</div>
-
-
-					<!-- 로그인된 경우만 글쓰기 가능 -->
 					<c:if test="${ ! empty loginInfo }">
 						<div class="col-auto">
 							<a class="btn btn-primary" href="new">새글쓰기</a>
@@ -93,14 +78,11 @@ table {
 					</c:if>
 				</div>
 			</div>
-
 		</div>
 		<input type="hidden" name="curPage" value="1"> <input
 			type="hidden" name="id">
 	</form>
-
 	<c:if test="${page.viewType eq 'grid'}">
-
 		<div class="row">
 			<c:forEach items="${page.list}" var="vo" varStatus="idx">
 				<c:set var="color" value="bg-primary"></c:set>
@@ -136,9 +118,7 @@ table {
 				</div>
 			</c:forEach>
 		</div>
-
 	</c:if>
-
 	<c:if test="${page.viewType eq 'list'}">
 		<table class="tb-list">
 			<colgroup>
@@ -175,12 +155,6 @@ table {
 			</c:forEach>
 		</table>
 	</c:if>
-
-	<!--  
-table 태그의 td 의 내용이 길어질때 ... 처리하려면
-table 태그의 css에서 table-layout: fiexd 로 지정 +  td 에  text-truncate 클래스 지정
--->
-
 	<jsp:include page="/WEB-INF/views/include/page.jsp" />
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -207,8 +181,6 @@ function info( id ){
 	$('[name=curPage]').val( ${page.curPage} )
 	$('form').attr('action', 'info').submit()
 }
-
-
 //조회목록갯수 변경시
 $('[name=pageList], [name=viewType]').change(function(){
 	//목록갯수 변경시는 총 페이지수가 달라지므로 항상 1페이지에 위치해야 함.
@@ -221,7 +193,5 @@ $('[name=viewType]').val( '${page.viewType}' ).prop('selected', true);
 //해당 목록갯수가 선택되어 있게
 $('[name=pageList]').val( ${page.pageList} ).prop('selected', true);
 </script>
-
-
 </body>
 </html>
