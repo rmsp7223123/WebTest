@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class BoardVO {
 	int board_Id;
-	String board_Title, board_Content, board_Visible, board_Writer;
+	String board_Title, board_Content, board_Visible, board_writer;
 	public int getBoard_Id() {
 		return board_Id;
 	}
@@ -32,12 +32,13 @@ public class BoardVO {
 	public void setBoard_Visible(String board_Visible) {
 		this.board_Visible = board_Visible;
 	}
-	public String getBoard_Writer() {
-		return board_Writer;
+	public String getBoard_writer() {
+		return board_writer;
 	}
-	public void setBoard_Writer(String board_Writer) {
-		this.board_Writer = board_Writer;
+	public void setBoard_writer(String board_writer) {
+		this.board_writer = board_writer;
 	}
+	
 	
 	
 	

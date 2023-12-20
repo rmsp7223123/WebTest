@@ -6,7 +6,7 @@
 		board_content, board_visible, board_writer)
 		VALUES (#{board_Title, jdbcType=VARCHAR},
 		#{board_Content, jdbcType=VARCHAR}, #{board_Visible, jdbcType=VARCHAR},
-		#{board_Writer, jdbcType=VARCHAR})
+		#{board_writer, jdbcType=VARCHAR})
 	</insert>
 
 	<select id="getBoardById" parameterType="int"

@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
 public class LoginIntercepter implements HandlerInterceptor {
 	@Override
@@ -11,16 +12,19 @@ public class LoginIntercepter implements HandlerInterceptor {
 			throws Exception {
 		// 로그인 여부 확인
 		Object loggedInUser = request.getSession().getAttribute("loggedInUser");
-//		if (loggedInUser == null) {
-//			// 로그인되지 않은 경우 로그인 페이지로 리다이렉트
-//			String loginErrorMessage = "로그인이 필요합니다.";
-//			response.sendRedirect("/rxo");
-//			return false;
-//		}
-		if (!request.getRequestURI().equals("/rxo/home")) {
-            response.sendRedirect("/rxo"); // 로그인 페이지 경로로 수정
-            return false; // 뒷단 컨트롤러 호출을 막음
-        }
+		if (loggedInUser == null) {
+			response.sendRedirect("/rxo");
+			return false;
+		}
 		return true;
 	}
+	
+	@Override
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+            ModelAndView modelAndView) throws Exception {
+        System.out.println("vo.getUser_id(): " + modelAndView.getModel().get("vo.getUser_id()"));
+        System.out.println("vo.getUsername(): " + modelAndView.getModel().get("vo.getUsername()"));
+        System.out.println("username: " + modelAndView.getModel().get("username"));
+    }
+	
 }

@@ -34,10 +34,16 @@ public class HomeController {
 	
 	@RequestMapping("/login")
 	@ResponseBody
-	public String loginCheck(MemberVO vo, HttpSession session) {
+	public String loginCheck(MemberVO vo, HttpSession session, Model model) {
 	    int login = sql.selectOne("login.loginCheck", vo);
-	    if(login == 1) {
+	    if(login == 1) { 
 	    	session.setAttribute("loggedInUser", vo.getUser_id());
+	    	session.setAttribute("loginInfo", vo.getUsername());
+	    	String username = (String)session.getAttribute("loginInfo");
+	    	model.addAttribute("username", username);
+	    	System.out.println(vo.getUser_id());
+	    	System.out.println(vo.getUsername());
+	    	System.out.println(username);
 	    }
 	    return String.valueOf(login);
 	}

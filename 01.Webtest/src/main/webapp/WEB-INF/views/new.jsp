@@ -46,12 +46,12 @@
 			</colgroup>
 			<tr>
 				<th>제목</th>
-				<td><input type="text" name="board_title"
+				<td><input type="text" name="board_Title"
 					class="check-empty form-control" title="제목"></td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea name="board_content" class="check-empty form-control"
+				<td><textarea name="board_Content" class="check-empty form-control"
 						title="내용"></textarea></td>
 			</tr>
 			<tr>
@@ -69,7 +69,7 @@
 				</td>
 			</tr>
 		</table>
-		<input type="hidden" name="board_writer" value="${loginInfo.userid}">
+		<input type="hidden" name="board_writer" value="${username}">
 	</form>
 
 	<div class="btn-toolbar gap-2 my-3 justify-content-center">
