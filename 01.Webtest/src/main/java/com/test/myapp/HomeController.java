@@ -37,13 +37,10 @@ public class HomeController {
 	public String loginCheck(MemberVO vo, HttpSession session, Model model) {
 	    int login = sql.selectOne("login.loginCheck", vo);
 	    if(login == 1) { 
-	    	session.setAttribute("loggedInUser", vo.getUser_id());
-	    	session.setAttribute("loginInfo", vo.getUsername());
-	    	String username = (String)session.getAttribute("loginInfo");
-	    	model.addAttribute("username", vo.getUser_id());
-	    	System.out.println(vo.getUser_id());
-	    	System.out.println(vo.getUsername());
-	    	System.out.println(username);
+	    	MemberVO member = sql.selectOne("login.getMemberInfo", vo.getUser_id());
+	        session.setAttribute("loggedInUser", vo.getUser_id());
+	        session.setAttribute("username", member.getUsername());
+	        model.addAttribute("username", member.getUsername());
 	    }
 	    return String.valueOf(login);
 	}

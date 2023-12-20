@@ -6,4 +6,8 @@
 		WHERE user_id = #{user_id, jdbcType=VARCHAR} AND user_password =
 		#{user_password, jdbcType=VARCHAR}
 	</select>
+	<select id="getMemberInfo" resultType="rxo.member.MemberVO">
+		 SELECT * FROM members
+        WHERE user_id = #{user_id, jdbcType=VARCHAR}
+	</select>
 </mapper>

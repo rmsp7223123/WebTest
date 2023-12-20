@@ -4,7 +4,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 
 public class LoginIntercepter implements HandlerInterceptor {
 	@Override
@@ -19,12 +18,5 @@ public class LoginIntercepter implements HandlerInterceptor {
 		return true;
 	}
 	
-	@Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-            ModelAndView modelAndView) throws Exception {
-        System.out.println("vo.getUser_id(): " + modelAndView.getModel().get("vo.getUser_id()"));
-        System.out.println("vo.getUsername(): " + modelAndView.getModel().get("vo.getUsername()"));
-        System.out.println("username: " + modelAndView.getModel().get("username"));
-    }
 	
 }

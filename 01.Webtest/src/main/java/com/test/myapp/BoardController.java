@@ -26,7 +26,7 @@ public class BoardController {
 		if (vo2 != null && vo2.getFile_Path() != null && !vo2.getFile_Path().isEmpty()) {
 	        sql.insert("board.attachFile", vo2);
 	    }
-		return "new";
+		return "main";
 	}
 
 }
