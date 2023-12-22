@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="board">
+	<insert id="write" parameterType="rxo.board.BoardVO">
+		INSERT INTO board (board_title,
+		board_content, board_visible, board_writer)
+		VALUES (#{board_Title, jdbcType=VARCHAR},
+		#{board_Content, jdbcType=VARCHAR}, #{board_Visible, jdbcType=VARCHAR},
+		#{board_writer, jdbcType=VARCHAR})
+	</insert>
+
+	<select id="getBoardById" parameterType="int"
+		resultType="rxo.board.BoardVO">
+		SELECT * FROM board WHERE board_id = #{boardId}
+	</select>
+
+	<select id="getAllBoards" resultType="rxo.board.BoardVO">
+		SELECT * FROM board
+	</select>
+
+	<insert id="attachFile" parameterType="rxo.board.AttachmentVO">
+		INSERT INTO attachments
+		(board_id, file_path)
+		VALUES (#{board_Id, jdbcType=VARCHAR}, #{file_Path, jdbcType=VARCHAR})
+	</insert>
+
+	<select id="getAttachmentsByBoardId" parameterType="int"
+		resultType="rxo.board.AttachmentVO">
+		SELECT * FROM attachments WHERE board_id = #{boardId}
+	</select>
+</mapper>
