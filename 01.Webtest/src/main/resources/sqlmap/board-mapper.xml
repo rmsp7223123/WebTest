@@ -4,8 +4,10 @@
 	<insert id="write" parameterType="rxo.board.BoardVO">
 		INSERT INTO board (board_title,
 		board_content, board_visible, board_writer)
-		VALUES (#{board_Title, jdbcType=VARCHAR},
-		#{board_Content, jdbcType=VARCHAR}, #{board_Visible, jdbcType=VARCHAR},
+		VALUES (#{board_Title,
+		jdbcType=VARCHAR},
+		#{board_Content, jdbcType=VARCHAR}, #{board_Visible,
+		jdbcType=VARCHAR},
 		#{board_writer, jdbcType=VARCHAR})
 	</insert>
 
@@ -21,11 +23,62 @@
 	<insert id="attachFile" parameterType="rxo.board.AttachmentVO">
 		INSERT INTO attachments
 		(board_id, file_path)
-		VALUES (#{board_Id, jdbcType=VARCHAR}, #{file_Path, jdbcType=VARCHAR})
+		VALUES (#{board_Id, jdbcType=VARCHAR},
+		#{file_Path, jdbcType=VARCHAR})
 	</insert>
 
 	<select id="getAttachmentsByBoardId" parameterType="int"
 		resultType="rxo.board.AttachmentVO">
 		SELECT * FROM attachments WHERE board_id = #{boardId}
 	</select>
+
+	<delete id="delete">
+		delete from board where id = #{id}
+	</delete>
+
+	<select id="info" resultType="rxo.board.BoardVO">
+		select b.*, name
+		from board b inner
+		join member m on board_writer = username
+		where board_id = #{board_id}
+	</select>
+
+	<select id="list" resultType="smart.board.BoardVO">
+		SELECT * FROM board
+	</select>
+
+	<select id="totalList" resultType="integer">
+		select count(*) from board
+		<include refid="searchWhere" />
+	</select>
+
+	<!-- 검색조건 -->
+	<sql id="searchWhere">
+		<choose>
+			<when test=" search == 's1' "> <!-- 전체 -->
+				where title like '%' || #{keyword} || '%'
+				or content like '%' ||
+				#{keyword} || '%'
+				or writer in (select userid from member where name
+				like '%' ||
+				#{keyword} || '%' )
+			</when>
+			<when test=" search == 's2' "> <!-- 제목 -->
+				where title like '%' || #{keyword} || '%'
+			</when>
+			<when test=" search == 's3' "> <!-- 내용 -->
+				where content like '%' || #{keyword} || '%'
+			</when>
+			<when test=" search == 's4' "> <!-- 작성자 -->
+				where writer in (select userid from member where name like '%' ||
+				#{keyword} || '%' )
+			</when>
+			<when test=" search == 's5' "> <!-- 제목+내용 -->
+				where title like '%' || #{keyword} || '%'
+				or content like '%' ||
+				#{keyword} || '%'
+			</when>
+		</choose>
+
+	</sql>
 </mapper>
