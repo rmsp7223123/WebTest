@@ -43,7 +43,7 @@
 		where board_id = #{board_id}
 	</select>
 
-	<select id="list" resultType="smart.board.BoardVO">
+	<select id="list" resultType="rxo.board.BoardVO">
 		SELECT * FROM board
 	</select>
 

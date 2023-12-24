@@ -10,6 +10,7 @@ import common.PageVO;
 
 @Repository
 public class BoardDAO implements BoardService {
+	
 	@Autowired
 	private SqlSession sql;
 

@@ -47,10 +47,9 @@
 			<beans:ref bean="LoginInterceptor" />
 		</interceptor>
 	</interceptors>
+	
+	<context:component-scan base-package="com.test.myapp" />
 
-
-	<context:component-scan
-		base-package="com.test.myapp" />
 
 
 
