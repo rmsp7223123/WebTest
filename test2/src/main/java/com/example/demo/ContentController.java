@@ -67,7 +67,7 @@ public class ContentController {
 	}
 
 	@GetMapping("/content/{id}")
-	public String showContent(@PathVariable int id, Model model) {
+	public String showContent(@PathVariable("id") int id, Model model) {
 		model.addAttribute("content", contentService.getContent(id));
 		return "basic_board/content-page";
 	}
