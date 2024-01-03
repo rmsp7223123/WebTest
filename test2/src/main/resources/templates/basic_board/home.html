@@ -10,7 +10,7 @@
 	<div>
 		<br />
 		<div align="right" style="margin-right: 100px">
-			<button onclick="location.href='./content/write'">글 작성</button>
+			<button onclick="location.href='./basic_board/content/write'">글 작성</button>
 		</div>
 	</div>
 	<br />
@@ -32,7 +32,7 @@
 					<td th:text="${content.writer}"></td>
 					<td th:text="${content.updateDate}"></td>
 					<td>
-						<button th:onclick="|location.href='@{/content/}'+${content.id}|"
+						<button th:onclick="|location.href='@{/basic_board/content/}'+${content.id}|"
 							style="height: 40px;">보기</button>
 					</td>
 				</tr>

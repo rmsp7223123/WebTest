@@ -1,10 +1,11 @@
-package basic_board;
+package com.example.demo;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +13,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import basic_board.Content;
+import basic_board.ContentForm;
+import basic_board.ContentService;
+import basic_board.FileStore;
+import basic_board.UploadFile;
 import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
+@ComponentScan(basePackages = "basic_board")
+@RequestMapping("/basic_board")
 public class ContentController {
 
 	private final ContentService contentService;
@@ -24,7 +32,7 @@ public class ContentController {
 	@RequestMapping("")
 	public String home(Model model) {
 		model.addAttribute("contents", contentService.getAllContents());
-		return "home";
+		return "basic_board/home";
 	}
 
 	@GetMapping("/")
@@ -32,9 +40,9 @@ public class ContentController {
 		return "redirect:/basic_board";
 	}
 
-	@GetMapping("/content/write")
+	@RequestMapping("/content/write")
 	public String writePage() {
-		return "write-page";
+		return "basic_board/write-page";
 	}
 
 	@PostMapping("/content/write")
