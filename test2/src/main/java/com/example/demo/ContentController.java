@@ -73,13 +73,13 @@ public class ContentController {
 	}
 
 	@PostMapping("/content/{id}")
-	public String editContent(@PathVariable int id, Content content) {
+	public String editContent(@PathVariable("id") int id, Content content) {
 		contentService.editContent(id, content.getTexts(), content.getPassword());
 		return "redirect:/basic_board";
 	}
 
 	@PostMapping("/content/delete/{id}")
-	public String deleteContent(@PathVariable int id, Content content) {
+	public String deleteContent(@PathVariable("id") int id, Content content) {
 		contentService.deleteContent(id, content.getPassword());
 		return "redirect:/basic_board";
 	}

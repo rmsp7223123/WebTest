@@ -20,6 +20,8 @@ public class FileStore {
     public String getFullPath(String filename) { return fileDir + filename; }
 
     public UploadFile storeFile(MultipartFile multipartFile) throws IOException {
+    	
+    	
 
         if(multipartFile.isEmpty()) {
             return null;
@@ -31,6 +33,10 @@ public class FileStore {
         String storeFilename = UUID.randomUUID() + "." + extractExt(originalFilename);
 
         // 파일을 저장하는 부분 -> 파일경로 + storeFilename 에 저장
+        File dir = new File(fileDir);
+        if (!dir.exists() ) {
+        	dir.mkdirs();
+        }
         multipartFile.transferTo(new File(getFullPath(storeFilename)));
 
         return new UploadFile(originalFilename, storeFilename);

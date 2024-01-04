@@ -21,10 +21,10 @@ public class ContentService {
 
 	public void editContent(int id, String texts, String password) {
 		Content content = contentRepository.findById(id);
-		if (!content.getPassword().equals(password)) {
+		content.setPassword(password);
+		if (content == null || content.getPassword() == null || !content.getPassword().equals(password)) {
 			return;
 		}
-
 		content.setTexts(texts);
 
 		LocalDateTime now = LocalDateTime.now();
@@ -36,7 +36,8 @@ public class ContentService {
 
 	public void deleteContent(int id, String password) {
 		Content content = contentRepository.findById(id);
-		if (!content.getPassword().equals(password)) {
+		content.setPassword(password);
+		if (content == null || content.getPassword() == null || !content.getPassword().equals(password)) {
 			return;
 		}
 		contentRepository.delete(id);
